@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SGAgro - Deshboard interativo</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <header class="cabecalho">
+      <a class="cabecalho__link" href="./index.html"> < Voltar </a>
+      <h1 class="cabecalho__title">SGAgro - Deshboard interativo</h1>
+    </header>
+
+    <main class="main-content">
+      <section class="main-content__defaut-info">
+        <h3 class="defaut-info__title">Informações previamente cadastradas:</h3>
+        <form class="default-info__form">
+          <label class="info-form__label">
+            Número do brinco:
+            <input
+              type="text"
+              value="078"
+              placeholder="Numero do brinco:"
+              class="form-label__specific-input"
+            />
+          </label>
+          <label class="info-form__label">
+            Idade em mêses:
+            <input
+              type="number"
+              value="25"
+              placeholder="Idade em mêses:"
+              class="form-label__specific-input"
+            />
+          </label>
+          <label class="info-form__label">
+            Peso em Kg:
+            <input
+              type="number"
+              value="256.5"
+              placeholder="Peso do animal"
+              class="form-label__specific-input"
+            />
+          </label>
+          <label class="info-form__label">
+            Data do cadastramento:
+            <input
+              type="date"
+              value="2024-03-02"
+              class="form-label__specific-input"
+            />
+          </label>
+          <label class="info-form__label">
+            Sexo do animal:
+            <select class="label__select form-label__specific-input">
+              <option class="select__option">Fêmea</option>
+              <option class="select__option">Macho</option>
+            </select>
+          </label>
+          <label class="info-form__label">
+            Raça do animal:
+            <input
+              type="text"
+              value="Angus"
+              placeholder="Raça do animal"
+              class="form-label__specific-input"
+            />
+          </label>
+          <label class="info-form__label">
+            Estado de prenhura:
+            <div>
+              <label>
+                Sim
+                <input type="radio" name="prenhura__radio-input" />
+              </label>
+              <label>
+                Não
+                <input type="radio" name="prenhura__radio-input" checked />
+              </label>
+            </div>
+          </label>
+        </form>
+      </section>
+
+      <section class="main-content__add-medicine-info">
+        <h3 class="add-medicine-info__title">Criar tabela de vacinação:</h3>
+        <div class="add-medicine-info__input-div">
+          <label class="input-div__vacinas-nome">
+            Nome da vacina:
+            <select class="input-div__options">
+              <option value="" class="options__option">Brucelose</option>
+              <option value="" class="options__option">Botulismo</option>
+              <option value="" class="options__option">Vacina da raiva</option>
+              <option value="" class="options__option">Febre Aftosa</option>
+              <option value="" class="options__option">
+                Carbunculo sitomático
+              </option>
+              <option value="" class="options__option">
+                Paratifo em vacas prenhas
+              </option>
+              <option value="" class="options__option">
+                Paratifo em bezerros
+              </option>
+            </select>
+          </label>
+          <label class="input-div__vacinas-nome">
+            Data da aplicação:
+            <input type="date" class="input-div__aplicacao-data" />
+          </label>
+          <button class="input-div__add-button">Adicionar</button>
+        </div>
+        <table class="add-medicine-info__table">
+          <thead class="table__cabecalho">
+            <tr class="cabecalho__headers">
+              <th class="headers__header">Nome da vacina</th>
+              <th class="headers__header">Data de aplicação</th>
+            </tr>
+          </thead>
+          <tbody class="table__body">
+            <tr class="body__linha">
+              <td class="linha__cell">Vacina Aftosa</td>
+              <td class="linha__cell">21/03/2023</td>
+            </tr>
+            <tr class="body__linha">
+              <td class="linha__cell">Vacina Aftosa</td>
+              <td class="linha__cell">21/03/2023</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="main-content__historico-veterinario">
+        <label>
+          Anotações sobre o animal:
+          <textarea cols="40" rows="4"></textarea>
+        </label>
+      </section>
+
+      <section class="main-content__footer">
+        <button class="footer__button">Salvar alterações</button>
+        <button class="footer__button">Deletar cadastro</button>
+      </section>
+    </main>
+
+    <footer class="footer">&copy; Leonardo Kramer Nadal</footer>
+  </body>
+</html>

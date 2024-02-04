@@ -1,0 +1,142 @@
+.main-content__defaut-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.defaut-info__title,
+.add-medicine-info__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.default-info__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--preto);
+  padding: 1rem;
+}
+
+.info-form__label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-label__specific-input {
+  width: 100%;
+}
+
+.info-form__label div {
+  display: flex;
+  gap: 2rem;
+}
+
+.main-content__add-medicine-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.add-medicine-info__input-div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 2rem 1rem 2rem;
+  gap: 1rem;
+}
+
+.input-div__vacinas-nome {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-div__add-button {
+  padding: 0.3rem 4rem;
+  background-color: var(--azul-tematico);
+  border: none;
+  color: var(--branco);
+  cursor: pointer;
+}
+
+.add-medicine-info__table {
+  width: 90%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.table__cabecalho {
+  background-color: var(--azul-tematico);
+  border: 1px solid var(--azul-tematico);
+}
+
+.headers__header {
+  padding: 6px;
+  border-left: 1px solid var(--branco);
+}
+
+.linha__cell {
+  padding: 6px;
+  border: 1px solid var(--azul-tematico);
+}
+
+.main-content__historico-veterinario label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.main-content__historico-veterinario label textarea {
+  width: 90%;
+  margin-top: 0.5rem;
+}
+
+.main-content__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.footer__button {
+  padding: 7px;
+  background-color: var(--azul-tematico);
+  border: none;
+  cursor: pointer;
+  color: var(--branco);
+}
+
+@media (min-width: 720px) {
+  .default-info__form {
+    width: 80%;
+  }
+
+  .input-div__vacinas-nome {
+    width: 70%;
+  }
+
+  .add-medicine-info__table {
+    width: 70%;
+  }
+
+  .main-content__historico-veterinario label textarea {
+    width: 80%;
+  }
+}

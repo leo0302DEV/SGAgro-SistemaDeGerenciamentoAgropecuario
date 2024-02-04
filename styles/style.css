@@ -1,0 +1,29 @@
+/*Importação da fonte utilizada no projeto:*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap");
+
+/*Style compartilhado em comum entre as páginas html*/
+@import "./header-footer.css";
+
+/*Importação dos styles da página principal: index.html*/
+@import "./PáginaPrincipal/main-content.css";
+
+/*Importação dos styles da página secundária: moreInfo.html*/
+@import "./PáginaSecundaria/secundario-main-content.css";
+
+/*Configurações de reset comuns a todas as páginas html do projeto:*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+:root {
+  --branco: #ffffff;
+  --preto: #000000;
+  --azul-tematico: #206b88;
+  --body-backgroud: #f3f3f3;
+}
