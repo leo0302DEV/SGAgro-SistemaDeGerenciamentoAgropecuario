@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/style.css" />
     <title>SGAgro - Sistema de gestão agropecuária</title>
+    <script src="./assets/main.js" type="module" defer></script>
   </head>
   <body>
     <header class="cabecalho">
@@ -48,11 +49,16 @@
           Sexo do animal:
           <div class="label__div">
             <label>
-              <input type="radio" name="div-label__radio" checked />
+              <input
+                type="radio"
+                name="div-label__radio"
+                value="Fêmea"
+                checked
+              />
               Fêmea
             </label>
             <label>
-              <input type="radio" name="div-label__radio" />
+              <input type="radio" name="div-label__radio" value="Macho" />
               Macho
             </label>
           </div>
@@ -94,29 +100,7 @@
             <th class="head__column">Data cadastro</th>
             <th class="head__column">Raça</th>
           </thead>
-          <tbody class="table__body">
-            <tr class="body__line">
-              <td class="line__cell">078</td>
-              <td class="line__cell">458,5</td>
-              <td class="line__cell">Fêmea</td>
-              <td class="line__cell">21/10/2023</td>
-              <td class="line__cell">Angus</td>
-            </tr>
-            <tr class="body__line">
-              <td class="line__cell">078</td>
-              <td class="line__cell">458,5</td>
-              <td class="line__cell">Fêmea</td>
-              <td class="line__cell">21/10/2023</td>
-              <td class="line__cell">Angus</td>
-            </tr>
-            <tr class="body__line">
-              <td class="line__cell">078</td>
-              <td class="line__cell">458,5</td>
-              <td class="line__cell">Fêmea</td>
-              <td class="line__cell">21/10/2023</td>
-              <td class="line__cell">Angus</td>
-            </tr>
-          </tbody>
+          <tbody class="table__body"></tbody>
         </table>
       </div>
     </main>
