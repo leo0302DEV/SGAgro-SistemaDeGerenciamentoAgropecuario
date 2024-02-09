@@ -7,8 +7,24 @@ const returnAllAnimalsObj = async () => {
     return animalsArray;
 };
 
+const createElementOnDb = async (newAnimalObj) => {
+    const request = await fetch("https://sgagro-sever.onrender.com/animals", {
+        method: "POST",
+        body: JSON.stringify(newAnimalObj),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    const response = await request.json();
+
+    location.reload();
+
+    return response;
+}
+
 const serverFunctions = {
     returnAllAnimalsObj,
+    createElementOnDb,
 }
 
 export default serverFunctions;

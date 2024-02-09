@@ -11,7 +11,7 @@ mainHelpers.performsTableActions(tableBody);
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const basicAnimalInfoObj = mainHelpers.catchInputsValue(formInputs, radioInputs);
+    mainHelpers.performsFormActions(formInputs, radioInputs);
 
     form.reset();
 });
