@@ -71,10 +71,19 @@ const showInfoOnTable = (animalsArr, tableBody) => {
         }
 
         arrOfTds[0].textContent = animalsInfoObj.numeroBrinco;
+        arrOfTds[0].classList.add("td__numero-brinco");
+
         arrOfTds[1].textContent = animalsInfoObj.peso;
+        arrOfTds[1].classList.add("td__peso");
+
         arrOfTds[2].textContent = animalsInfoObj.sexoAnimal;
+        arrOfTds[2].classList.add("td__sexo-animal");
+
         arrOfTds[3].textContent = animalsInfoObj.dataCadastramento;
+        arrOfTds[3].classList.add("td__data-cadastro");
+
         arrOfTds[4].textContent = animalsInfoObj.raçaAnimal;
+        arrOfTds[4].classList.add("td__raca-animal");
 
         arrOfTds.forEach((tdElement) => {
             tr.appendChild(tdElement);

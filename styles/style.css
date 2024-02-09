@@ -27,3 +27,7 @@
   --azul-tematico: #206b88;
   --body-backgroud: #f3f3f3;
 }
+
+.invisivel {
+  display: none;
+}
