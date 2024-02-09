@@ -8,7 +8,7 @@ const tableBody = document.querySelector(".table__body");
 
 mainHelpers.performsTableActions(tableBody);
 
-submitButton.addEventListener("click", async (e) => {
+submitButton.addEventListener("click", (e) => {
     e.preventDefault();
 
     const basicAnimalInfoObj = mainHelpers.catchInputsValue(formInputs, radioInputs);

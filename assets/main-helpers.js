@@ -46,6 +46,7 @@ const processInfoFromDb = (animalsArr) => {
             sexoAnimal: animal.sexoAnimal,
             dataCadastramento: formatDate(animal.dataCadastramento),
             raçaAnimal: animal.raçaAnimal,
+            id: animal._id,
         }
     });
 
@@ -61,6 +62,7 @@ const showInfoOnTable = (animalsArr, tableBody) => {
 
         const tr = document.createElement("tr");
         tr.classList.add("body__line");
+        tr.setAttribute("data-id", animalsInfoObj.id);
 
         for (let i = 0; i < 5; i++) {
             const td = document.createElement("td");
