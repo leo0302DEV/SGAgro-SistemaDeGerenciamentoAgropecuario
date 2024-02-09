@@ -6,6 +6,7 @@ const formInputs = document.querySelectorAll(".form__input");
 const radioInputs = document.querySelectorAll('input[name="div-label__radio"]');
 const submitButton = document.querySelector(".form__button");
 const tableBody = document.querySelector(".table__body");
+const table = document.querySelector(".page__table");
 const filterInput = document.querySelector("#filter__input");
 const selectInput = document.querySelector(".filter__config");
 
@@ -24,4 +25,13 @@ filterInput.addEventListener("input", () => {
     const tableBodyElements = document.querySelectorAll(".body__line");
 
     filterElementsOnTable(inputValue, selectInput, tableBodyElements);
+});
+
+table.addEventListener("dblclick", (event) => {
+    const teagetElement = event.target.parentNode;
+    const idDadTargetElement = teagetElement.getAttribute("data-id");
+
+    localStorage.setItem("animalId", idDadTargetElement);
+
+    window.location.href = "../moreInfo.html";
 });
