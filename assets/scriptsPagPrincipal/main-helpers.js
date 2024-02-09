@@ -1,4 +1,4 @@
-import serverFunctions from "./conectToServer.js";
+import serverFunctions from "../conectToServer.js";
 
 const formatDate = (dateString) => {
     const modifyString = dateString.replace("T00:00:00.000Z", "");
