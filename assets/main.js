@@ -6,19 +6,12 @@ const radioInputs = document.querySelectorAll('input[name="div-label__radio"]');
 const submitButton = document.querySelector(".form__button");
 const tableBody = document.querySelector(".table__body");
 
-submitButton.addEventListener("click", (e) => {
+mainHelpers.performsTableActions(tableBody);
+
+submitButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    try {
-        const basicAnimalInfoObj = mainHelpers.catchInputsValue(formInputs, radioInputs);
-        mainHelpers.showInfoOnTable(basicAnimalInfoObj, tableBody);
-    } catch (error) {
-        alert("Preencha os campos do formulário corretamente!");
-        console.error(error);
-    }
+    const basicAnimalInfoObj = mainHelpers.catchInputsValue(formInputs, radioInputs);
 
     form.reset();
 });
-
-
-
