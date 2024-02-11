@@ -1,16 +1,12 @@
 import serverFunctions from "../conectToServer.js";
 
 const formatDate = (dateString) => {
-    const modifyString = dateString.replace("T00:00:00.000Z", "");
+    const dataHoraOriginal = new Date(dateString);
+    const dataHoraUTC = dataHoraOriginal.toISOString();
+    const opcoes = { timeZone: "UTC", year: 'numeric', month: '2-digit', day: '2-digit' };
+    const dataHoraFormatada = dataHoraOriginal.toLocaleString('pt-BR', opcoes);
 
-    const year = modifyString.match(/\d{4}/)[0];
-    const month = modifyString.match(/-\d{2}-/)[0];
-    const day = modifyString.match(/-\d{2}$/)[0];
-
-    const dateStringFormated = day + "/" + month + "/" + year;
-    const dateStringWithoutHyphen = dateStringFormated.replace(/-/g, "");
-
-    return dateStringWithoutHyphen;
+    return dataHoraFormatada;
 }
 
 const catchInputsValue = (arrInputs, radioInputs) => {
@@ -35,6 +31,8 @@ const catchInputsValue = (arrInputs, radioInputs) => {
         dataCadastramento: arrOfValues[3],
         raçaAnimal: arrOfValues[4],
         sexoAnimal: radioinputValue,
+        historicoVeterinario: "",
+        prenhura: false,
     };
 }
 
@@ -106,6 +104,7 @@ const performsFormActions = (formInputs, radioInputs) => {
 const mainHelpers = {
     performsFormActions,
     performsTableActions,
+    formatDate,
 }
 
 export default mainHelpers;

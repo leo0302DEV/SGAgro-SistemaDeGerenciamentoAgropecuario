@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SGAgro - Deshboard interativo</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <script
+      type="module"
+      src="./assets/scriptsPagSecundaria/moreInfo.js"
+      defer
+    ></script>
   </head>
   <body>
     <header class="cabecalho">
@@ -20,35 +25,31 @@
             Número do brinco:
             <input
               type="text"
-              value="078"
               placeholder="Numero do brinco:"
-              class="form-label__specific-input"
+              class="form-label__specific-input form-label__input"
             />
           </label>
           <label class="info-form__label">
             Idade em mêses:
             <input
               type="number"
-              value="25"
               placeholder="Idade em mêses:"
-              class="form-label__specific-input"
+              class="form-label__specific-input form-label__input"
             />
           </label>
           <label class="info-form__label">
             Peso em Kg:
             <input
               type="number"
-              value="256.5"
               placeholder="Peso do animal"
-              class="form-label__specific-input"
+              class="form-label__specific-input form-label__input"
             />
           </label>
           <label class="info-form__label">
             Data do cadastramento:
             <input
               type="date"
-              value="2024-03-02"
-              class="form-label__specific-input"
+              class="form-label__specific-input form-label__input"
             />
           </label>
           <label class="info-form__label">
@@ -62,9 +63,8 @@
             Raça do animal:
             <input
               type="text"
-              value="Angus"
               placeholder="Raça do animal"
-              class="form-label__specific-input"
+              class="form-label__specific-input form-label__input"
             />
           </label>
           <label class="info-form__label">
@@ -72,11 +72,15 @@
             <div>
               <label>
                 Sim
-                <input type="radio" name="prenhura__radio-input" />
+                <input type="radio" name="prenhura__radio-input" value="true" />
               </label>
               <label>
                 Não
-                <input type="radio" name="prenhura__radio-input" checked />
+                <input
+                  type="radio"
+                  name="prenhura__radio-input"
+                  value="false"
+                />
               </label>
             </div>
           </label>
@@ -87,20 +91,43 @@
         <h3 class="add-medicine-info__title">Criar tabela de vacinação:</h3>
         <div class="add-medicine-info__input-div">
           <label class="input-div__vacinas-nome">
-            Nome da vacina:
+            Nome da vacina ou medicamento:
             <select class="input-div__options">
-              <option value="" class="options__option">Brucelose</option>
-              <option value="" class="options__option">Botulismo</option>
-              <option value="" class="options__option">Vacina da raiva</option>
-              <option value="" class="options__option">Febre Aftosa</option>
-              <option value="" class="options__option">
+              <option value="Brucelose" class="options__option">
+                Brucelose
+              </option>
+              <option value="Botulismo" class="options__option">
+                Botulismo
+              </option>
+              <option value="Vacina da raiva" class="options__option">
+                Vacina da raiva
+              </option>
+              <option value="Febre Aftosa" class="options__option">
+                Febre Aftosa
+              </option>
+              <option value="Carbunculo sintomático" class="options__option">
                 Carbunculo sitomático
               </option>
-              <option value="" class="options__option">
+              <option value="Paratifo em vacas prenhas" class="options__option">
                 Paratifo em vacas prenhas
               </option>
-              <option value="" class="options__option">
+              <option value="Paratifo em bezerros" class="options__option">
                 Paratifo em bezerros
+              </option>
+              <option value="Remádio do lombo" class="options__option">
+                Remádio do lombo
+              </option>
+              <option value="Carrapaticida injetável" class="options__option">
+                Carrapaticida injetável
+              </option>
+              <option
+                value="Carrapaticida de uso externo"
+                class="options__option"
+              >
+                Carrapaticida de uso externo
+              </option>
+              <option value="Vermífugo injetável" class="options__option">
+                Vermífugo injetável
               </option>
             </select>
           </label>
@@ -117,29 +144,28 @@
               <th class="headers__header">Data de aplicação</th>
             </tr>
           </thead>
-          <tbody class="table__body">
-            <tr class="body__linha">
-              <td class="linha__cell">Vacina Aftosa</td>
-              <td class="linha__cell">21/03/2023</td>
-            </tr>
-            <tr class="body__linha">
-              <td class="linha__cell">Vacina Aftosa</td>
-              <td class="linha__cell">21/03/2023</td>
-            </tr>
-          </tbody>
+          <tbody class="table__body"></tbody>
         </table>
       </section>
 
       <section class="main-content__historico-veterinario">
         <label>
           Anotações sobre o animal:
-          <textarea cols="40" rows="4"></textarea>
+          <textarea
+            cols="40"
+            rows="4"
+            class="historico-veterinario__label-textArea"
+          ></textarea>
         </label>
       </section>
 
       <section class="main-content__footer">
-        <button class="footer__button">Salvar alterações</button>
-        <button class="footer__button">Deletar cadastro</button>
+        <button class="footer__button footer__button-save-info">
+          Salvar alterações
+        </button>
+        <button class="footer__button footer__button-delete-animal">
+          Deletar cadastro
+        </button>
       </section>
     </main>
 
