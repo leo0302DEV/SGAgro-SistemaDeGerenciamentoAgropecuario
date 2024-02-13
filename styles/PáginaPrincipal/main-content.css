@@ -32,7 +32,8 @@
   font-size: 12px;
 }
 
-.form__button {
+.form__button,
+.main-content__modify-some-animals {
   width: 284px;
   margin: 1rem;
   padding: 0.5rem;
@@ -70,6 +71,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  gap: 1rem;
 }
 
 .page__table {
