@@ -44,4 +44,6 @@ modifySomeBtn.addEventListener("click", () => {
     const matchElementsArr = modifySomeHelpers.returnAnimalsId(numeroBrincos, tableBodyElements);
 
     localStorage.setItem("arrOfAnimalsId", JSON.stringify(matchElementsArr));
+
+    window.location.href = "./modifySome.html";
 });

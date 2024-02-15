@@ -10,6 +10,9 @@
 /*Importação dos styles da página secundária: moreInfo.html*/
 @import "./PáginaSecundaria/secundario-main-content.css";
 
+/*Importação dos styles da página terceária: modifySome.html*/
+@import "./PáginaTercearia/terceario-main-content.css";
+
 /*Configurações de reset comuns a todas as páginas html do projeto:*/
 
 * {
