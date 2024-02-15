@@ -1,6 +1,5 @@
 import mainHelpers from "./main-helpers.js";
 import filterElementsOnTable from "./filter-helpers.js";
-import modifySomeHelpers from "./modify-some-helpers.js";
 
 const form = document.querySelector(".page__form");
 const formInputs = document.querySelectorAll(".form__input");
@@ -40,10 +39,8 @@ table.addEventListener("dblclick", (event) => {
 
 modifySomeBtn.addEventListener("click", () => {
     const numeroBrincos = prompt("Informe o número do brinco dos animais que você deseja modificar em grupo.");
-    const tableBodyElements = document.querySelectorAll(".body__line");
-    const matchElementsArr = modifySomeHelpers.returnAnimalsId(numeroBrincos, tableBodyElements);
 
-    localStorage.setItem("arrOfAnimalsId", JSON.stringify(matchElementsArr));
+    localStorage.setItem("stringOfAnimalsNumber", JSON.stringify(numeroBrincos));
 
     window.location.href = "./modifySome.html";
 });
