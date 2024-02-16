@@ -1,13 +1,5 @@
 import serverFunctions from "../conectToServer.js";
-
-const formatDate = (dateString) => {
-    const dataHoraOriginal = new Date(dateString);
-    const dataHoraUTC = dataHoraOriginal.toISOString();
-    const opcoes = { timeZone: "UTC", year: 'numeric', month: '2-digit', day: '2-digit' };
-    const dataHoraFormatada = dataHoraOriginal.toLocaleString('pt-BR', opcoes);
-
-    return dataHoraFormatada;
-}
+import formatDateMethodsObj from "../formatDateScripts.js";
 
 const catchInputsValue = (arrInputs, radioInputs) => {
     const arrOfValues = [];
@@ -42,7 +34,7 @@ const processInfoFromDb = (animalsArr) => {
             numeroBrinco: animal.numeroBrinco,
             peso: animal.peso,
             sexoAnimal: animal.sexoAnimal,
-            dataCadastramento: formatDate(animal.dataCadastramento),
+            dataCadastramento: formatDateMethodsObj.formatDateToUser(animal.dataCadastramento),
             raçaAnimal: animal.raçaAnimal,
             id: animal._id,
         }
@@ -52,13 +44,12 @@ const processInfoFromDb = (animalsArr) => {
 }
 
 const showInfoOnTable = (animalsArr, tableBody) => {
-
     const arrOfAnimalsInfo = processInfoFromDb(animalsArr);
 
     arrOfAnimalsInfo.forEach((animalsInfoObj) => {
         const arrOfTds = [];
-
         const tr = document.createElement("tr");
+
         tr.classList.add("body__line");
         tr.setAttribute("data-id", animalsInfoObj.id);
 
@@ -104,7 +95,6 @@ const performsFormActions = (formInputs, radioInputs) => {
 const mainHelpers = {
     performsFormActions,
     performsTableActions,
-    formatDate,
 }
 
 export default mainHelpers;

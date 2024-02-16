@@ -1,14 +1,5 @@
 import serverFunctions from "../conectToServer.js";
-import mainHelpers from "../scriptsPagPrincipal/main-helpers.js";
-
-const formatDate = (dateString) => {
-    const year = dateString.match(/\/\d{4}$/)[0].replace("/", "");
-    const month = dateString.match(/\/\d{2}\//)[0].replace(/\//g, "");
-    const day = dateString.match(/^\d{2}\//)[0].replace("/", "");
-    const dataFormatedString = year + "-" + month + "-" + day;
-
-    return dataFormatedString
-}
+import formatDateMethodsObj from "../formatDateScripts.js";
 
 const returnAnimalObj = async (id) => {
     const animalObjInfo = await serverFunctions.returnOnlyOneAnimalObj(id);
@@ -18,12 +9,12 @@ const returnAnimalObj = async (id) => {
 
 const setInputsValue = async (arrOfInputs, selectInput, animalId, radioInputs) => {
     const apiResponse = await returnAnimalObj(animalId);
-    const dataFormatada = mainHelpers.formatDate(apiResponse.dataCadastramento);
+    const dataFormatada = formatDateMethodsObj.formatDateToUser(apiResponse.dataCadastramento);
     const dataArr = [
         apiResponse.numeroBrinco,
         apiResponse.idade,
         apiResponse.peso,
-        formatDate(dataFormatada),
+        formatDateMethodsObj.formatDateToInputDate(dataFormatada),
         apiResponse.raçaAnimal,
     ];
 
@@ -62,7 +53,7 @@ const setTableOfMedicinesInfo = async (tableBody, animalId) => {
 
             const tdDate = document.createElement("td");
             tdDate.classList.add("linha__cell");
-            tdDate.textContent = mainHelpers.formatDate(dateMedicineAplic);
+            tdDate.textContent = formatDateMethodsObj.formatDateToUser(dateMedicineAplic);
 
             tr.appendChild(tdNome);
             tr.appendChild(tdDate);
@@ -83,7 +74,7 @@ const setVetHistoric = async (textArea, animalId) => {
 
 const addInfoOnTable = (selectInput, dateInput, tableBody) => {
     const selectInputValue = selectInput.options[selectInput.selectedIndex].value;
-    const dateOfAplication = mainHelpers.formatDate(dateInput.value);
+    const dateOfAplication = formatDateMethodsObj.formatDateToUser(dateInput.value);
 
     const tr = document.createElement("tr");
     tr.classList.add("body__linha");
@@ -134,7 +125,7 @@ const catchTableInfos = (tableBody) => {
     tableBodyChildes.forEach((element) => {
         const elementsChilds = element.querySelectorAll(".linha__cell");
         const medName = elementsChilds[0].textContent;
-        const medDataAplic = formatDate(elementsChilds[1].textContent) + "T00:00:00";
+        const medDataAplic = formatDateMethodsObj.formatDateToServer(elementsChilds[1].textContent);
         tableMedicInfoArr.push({
             nomeMedicamento: medName,
             dataAplicacao: medDataAplic,
