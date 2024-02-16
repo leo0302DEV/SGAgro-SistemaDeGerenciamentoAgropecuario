@@ -2,27 +2,16 @@ import serverFunctions from "../conectToServer.js";
 import formatDateMethodsObj from "../formatDateScripts.js";
 
 const catchInputsValue = (arrInputs, radioInputs) => {
-    const arrOfValues = [];
-    let radioinputValue;
-
-    arrInputs.forEach((element) => {
-        const elementValue = element.value;
-        arrOfValues.push(elementValue);
-    });
-
-    radioInputs.forEach((element) => {
-        if (element.checked) {
-            radioinputValue = element.value;
-        };
-    });
+    const [numeroBrinco, idade, peso, dataCadastramento, raçaAnimal] = arrInputs.map(input => input.value);
+    const sexoAnimal = radioInputs.find(input => input.checked)?.value;
 
     return {
-        numeroBrinco: arrOfValues[0],
-        idade: Number(arrOfValues[1]),
-        peso: Number(arrOfValues[2]),
-        dataCadastramento: arrOfValues[3],
-        raçaAnimal: arrOfValues[4],
-        sexoAnimal: radioinputValue,
+        numeroBrinco,
+        idade: Number(idade),
+        peso: Number(peso),
+        dataCadastramento,
+        raçaAnimal,
+        sexoAnimal,
         historicoVeterinario: "",
         prenhura: false,
     };
@@ -47,35 +36,18 @@ const showInfoOnTable = (animalsArr, tableBody) => {
     const arrOfAnimalsInfo = processInfoFromDb(animalsArr);
 
     arrOfAnimalsInfo.forEach((animalsInfoObj) => {
-        const arrOfTds = [];
         const tr = document.createElement("tr");
-
         tr.classList.add("body__line");
         tr.setAttribute("data-id", animalsInfoObj.id);
 
-        for (let i = 0; i < 5; i++) {
+        const infoKeys = ['numeroBrinco', 'peso', 'sexoAnimal', 'dataCadastramento', 'raçaAnimal'];
+        const classKeys = ['td__numero-brinco', 'td__peso', 'td__sexo-animal', 'td__data-cadastro', 'td__raca-animal'];
+
+        infoKeys.forEach((key, index) => {
             const td = document.createElement("td");
-            td.classList.add("line__cell");
-            arrOfTds.push(td);
-        }
-
-        arrOfTds[0].textContent = animalsInfoObj.numeroBrinco;
-        arrOfTds[0].classList.add("td__numero-brinco");
-
-        arrOfTds[1].textContent = animalsInfoObj.peso;
-        arrOfTds[1].classList.add("td__peso");
-
-        arrOfTds[2].textContent = animalsInfoObj.sexoAnimal;
-        arrOfTds[2].classList.add("td__sexo-animal");
-
-        arrOfTds[3].textContent = animalsInfoObj.dataCadastramento;
-        arrOfTds[3].classList.add("td__data-cadastro");
-
-        arrOfTds[4].textContent = animalsInfoObj.raçaAnimal;
-        arrOfTds[4].classList.add("td__raca-animal");
-
-        arrOfTds.forEach((tdElement) => {
-            tr.appendChild(tdElement);
+            td.textContent = animalsInfoObj[key];
+            td.classList.add("line__cell", classKeys[index]);
+            tr.appendChild(td);
         });
 
         tableBody.appendChild(tr);

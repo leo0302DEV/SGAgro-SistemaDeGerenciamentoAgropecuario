@@ -1,4 +1,3 @@
-import serverFunctions from "../conectToServer.js";
 import moreInfoHelpers from "./moreInfo-helpers.js";
 
 const animalId = localStorage.getItem("animalId");
