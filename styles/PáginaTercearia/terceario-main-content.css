@@ -30,8 +30,7 @@
   border-collapse: collapse;
 }
 
-.table__cabe,
-.table__footer {
+.table__cabe {
   background-color: var(--azul-tematico);
   border: 1px solid var(--azul-tematico);
   color: var(--branco);
@@ -41,18 +40,13 @@
   padding: 0.5rem;
 }
 
-#titulo--boder,
-#footer--border-cell {
+#titulo--boder {
   border-right: 1px solid var(--branco);
 }
 
 .linha__celula {
   border: 1px solid var(--azul-tematico);
   padding: 0.5rem;
-}
-
-.footer__line-cell {
-  padding: 0.2rem;
 }
 
 .textarea-sec__titulo {

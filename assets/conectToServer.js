@@ -57,12 +57,26 @@ const doDeleteRequestToDb = async (animalId) => {
     return response;
 }
 
+const doPutInGroupRequest = async (stringEarings, modificationsObj) => {
+    const request = await fetch(`https://sgagro-sever.onrender.com/animals/group?earingq=${stringEarings}`, {
+        method: "PUT",
+        body: JSON.stringify(modificationsObj),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    const response = await request.json();
+
+    return response;
+}
+
 const serverFunctions = {
     returnAllAnimalsObj,
     createElementOnDb,
     returnOnlyOneAnimalObj,
     doPutRequestToDb,
     doDeleteRequestToDb,
+    doPutInGroupRequest,
 }
 
 export default serverFunctions;

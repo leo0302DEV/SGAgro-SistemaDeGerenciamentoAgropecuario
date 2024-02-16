@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SGAgro - Modificação em grupo</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <script
+      type="module"
+      src="./assets/scriptsPagTercearia/modifySome.js"
+      defer
+    ></script>
   </head>
   <body>
     <header class="cabecalho">
@@ -13,6 +18,9 @@
     </header>
 
     <main class="body__main-table">
+      <span
+        >Brincos selecionados: <span class="main-table__numero-brincos"></span
+      ></span>
       <section class="main-table__med-table">
         <select class="med-table__select-option">
           <option value="Brucelose">Brucelose</option>
@@ -42,28 +50,7 @@
               <th class="headers__titulo">Data de aplicação</th>
             </tr>
           </thead>
-          <tbody class="table__corpo">
-            <tr class="corpo__linha">
-              <td class="linha__celula">Brucelose</td>
-              <td class="linha__celula">24/02/2023</td>
-            </tr>
-            <tr class="body__line">
-              <td class="linha__celula">Brucelose</td>
-              <td class="linha__celula">24/02/2023</td>
-            </tr>
-            <tr class="body__line">
-              <td class="linha__celula">Brucelose</td>
-              <td class="linha__celula">24/02/2023</td>
-            </tr>
-          </tbody>
-          <tfoot class="table__footer">
-            <tr class="footer__line">
-              <td class="footer__line-cell" id="footer--border-cell">
-                Brincos:
-              </td>
-              <td class="footer__line-cell">381, 456, 789</td>
-            </tr>
-          </tfoot>
+          <tbody class="table__corpo"></tbody>
         </table>
       </section>
       <section class="main-table__textarea-sec">
