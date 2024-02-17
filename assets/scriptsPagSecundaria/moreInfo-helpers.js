@@ -3,36 +3,18 @@ import formatDateMethodsObj from "../formatDateScripts.js";
 
 const returnAnimalObj = async (id) => {
     const animalObjInfo = await serverFunctions.returnOnlyOneAnimalObj(id);
-
     return animalObjInfo;
 }
 
 const setInputsValue = async (arrOfInputs, selectInput, animalId, radioInputs) => {
-    const apiResponse = await returnAnimalObj(animalId);
-    const dataFormatada = formatDateMethodsObj.formatDateToUser(apiResponse.dataCadastramento);
-    const dataArr = [
-        apiResponse.numeroBrinco,
-        apiResponse.idade,
-        apiResponse.peso,
-        formatDateMethodsObj.formatDateToInputDate(dataFormatada),
-        apiResponse.raçaAnimal,
-    ];
+    const { numeroBrinco, idade, peso, dataCadastramento, raçaAnimal, sexoAnimal, prenhura } = await returnAnimalObj(animalId);
+    const dataFomatada = formatDateMethodsObj.formatForInputFromUser(dataCadastramento);
+    const dataArr = [numeroBrinco, idade, peso, dataFomatada, raçaAnimal];
 
-    for (let i = 0; i < arrOfInputs.length; i++) {
-        arrOfInputs[i].value = dataArr[i];
-    }
+    arrOfInputs.forEach((input, index) => input.value = dataArr[index]);
 
-    if (apiResponse.sexoAnimal === "Fêmea") {
-        selectInput.options.selectedIndex = 0;
-    } else {
-        selectInput.options.selectedIndex = 1;
-    }
-
-    if (apiResponse.prenhura === false) {
-        radioInputs[1].checked = true;
-    } else {
-        radioInputs[0].checked = true;
-    }
+    sexoAnimal === "Fêmea" ? selectInput.options.selectedIndex = 0 : selectInput.options.selectedIndex = 1;
+    !prenhura ? radioInputs[1].checked = true : radioInputs[0].checked = true;
 }
 
 const setTableOfMedicinesInfo = async (tableBody, animalId) => {
@@ -41,8 +23,7 @@ const setTableOfMedicinesInfo = async (tableBody, animalId) => {
 
     if (medicineArr.length > 0) {
         medicineArr.forEach((element) => {
-            const medicineName = element.nomeMedicamento;
-            const dateMedicineAplic = element.dataAplicacao;
+            const { nomeMedicamento: medicineName, dataAplicacao: dateMedicineAplic } = element;
 
             const tr = document.createElement("tr");
             tr.classList.add("body__linha");
@@ -55,21 +36,18 @@ const setTableOfMedicinesInfo = async (tableBody, animalId) => {
             tdDate.classList.add("linha__cell");
             tdDate.textContent = formatDateMethodsObj.formatDateToUser(dateMedicineAplic);
 
-            tr.appendChild(tdNome);
-            tr.appendChild(tdDate);
+            tr.append(tdNome, tdDate);
 
             tableBody.appendChild(tr);
         });
-    } else {
-        return;
     }
+
+    return;
 }
 
 const setVetHistoric = async (textArea, animalId) => {
     const animalObj = await returnAnimalObj(animalId);
-    const vetHistoric = animalObj.historicoVeterinario;
-
-    textArea.textContent = vetHistoric;
+    textArea.textContent = animalObj.historicoVeterinario;
 }
 
 const addInfoOnTable = (selectInput, dateInput, tableBody) => {
@@ -87,34 +65,25 @@ const addInfoOnTable = (selectInput, dateInput, tableBody) => {
     tdDateAplic.classList.add("linha__cell");
     tdDateAplic.textContent = dateOfAplication;
 
-    tr.appendChild(tdNomeMedic);
-    tr.appendChild(tdDateAplic);
+    tr.append(tdNomeMedic, tdDateAplic);
 
     tableBody.appendChild(tr);
 }
 
 const catchDefautInfoAndHistoric = (defautInputs, selectInput, radioInputs, textArea) => {
     const selectInputValue = selectInput.options[selectInput.selectedIndex].value;
-    const historicContent = textArea.value;
-    let radioInputValue;
-
-    radioInputs.forEach((element) => {
-        if (element.checked) {
-            radioInputValue = element.value;
-        } else {
-            return;
-        }
-    });
+    const [brinco, idade, peso, cadastro, raca] = defautInputs;
+    const radioInputValue = [...radioInputs].find(element => element.checked).value;
 
     return {
-        numeroBrinco: defautInputs[0].value,
-        idade: defautInputs[1].value,
-        peso: defautInputs[2].value,
-        dataCadastramento: defautInputs[3].value,
-        raçaAnimal: defautInputs[4].value,
+        numeroBrinco: brinco.value,
+        idade: idade.value,
+        peso: peso.value,
+        dataCadastramento: cadastro.value,
+        raçaAnimal: raca.value,
         sexoAnimal: selectInputValue,
         prenhura: radioInputValue,
-        historicoVeterinario: historicContent,
+        historicoVeterinario: textArea.value,
     }
 }
 
@@ -123,12 +92,10 @@ const catchTableInfos = (tableBody) => {
     const tableMedicInfoArr = [];
 
     tableBodyChildes.forEach((element) => {
-        const elementsChilds = element.querySelectorAll(".linha__cell");
-        const medName = elementsChilds[0].textContent;
-        const medDataAplic = formatDateMethodsObj.formatDateToServer(elementsChilds[1].textContent);
+        const [medName, medDataAplic] = element.querySelectorAll(".linha__cell");
         tableMedicInfoArr.push({
-            nomeMedicamento: medName,
-            dataAplicacao: medDataAplic,
+            nomeMedicamento: medName.textContent,
+            dataAplicacao: formatDateMethodsObj.formatDateToServer(medDataAplic.textContent),
         });
     });
 

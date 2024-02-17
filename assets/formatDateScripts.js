@@ -23,10 +23,18 @@ const formatDateToUser = (dateString) => {
     return dataHoraFormatada;
 }
 
+const formatForInputFromUser = (dateString) => {
+    const dataPreFormatada = formatDateToUser(dateString);
+    const dataFormatada = formatDateToInputDate(dataPreFormatada);
+
+    return dataFormatada;
+}
+
 const formatDateMethodsObj = {
     formatDateToInputDate,
     formatDateToServer,
     formatDateToUser,
+    formatForInputFromUser,
 }
 
 export default formatDateMethodsObj;

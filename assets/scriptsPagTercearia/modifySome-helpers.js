@@ -15,26 +15,22 @@ const addInfoOnTable = (inputDate, inputName, tableBody) => {
     tdData.classList.add("linha__celula");
     tdData.textContent = dataAplic;
 
-    tr.appendChild(tdName);
-    tr.appendChild(tdData);
+    tr.append(tdName, tdData);
 
     tableBody.appendChild(tr);
 }
 
 const returnAllInfos = (tableElement, historicoVet) => {
     const arrOfTableLines = tableElement.querySelectorAll(".corpo__linha");
-    const arrOfMedicinesInfo = [];
     const historicoVeterinario = historicoVet.value;
+    const arrOfMedicinesInfo = [];
 
     if (arrOfTableLines.length !== 0) {
         arrOfTableLines.forEach(trElement => {
-            const arrOfTableCells = trElement.querySelectorAll(".linha__celula");
-            const medName = arrOfTableCells[0].textContent;
-            const dateAplic = formatDateMethodsObj.formatDateToServer(arrOfTableCells[1].textContent);
-
+            const [medName, dateAplic] = trElement.querySelectorAll(".linha__celula");
             arrOfMedicinesInfo.push({
-                nomeMedicamento: medName,
-                dataAplicacao: dateAplic,
+                nomeMedicamento: medName.textContent,
+                dataAplicacao: formatDateMethodsObj.formatDateToServer(dateAplic.textContent),
             });
         });
 

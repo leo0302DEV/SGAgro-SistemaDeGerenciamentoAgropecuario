@@ -25,11 +25,7 @@ tableBody.addEventListener("dblclick", (event) => {
     const eventFoucus = event.target.parentNode;
     const proptResposta = confirm("Você deseja excluir este registro? Atenção, essa ação é irreversível.");
 
-    if (proptResposta) {
-        tableBody.removeChild(eventFoucus);
-    } else {
-        return;
-    }
+    proptResposta ? tableBody.removeChild(eventFoucus) : null;
 });
 
 saveInfosBtn.addEventListener("click", () => {
@@ -41,8 +37,8 @@ saveInfosBtn.addEventListener("click", () => {
 
         alert("Atualizado com sucesso!");
     } catch (error) {
+        alert("Houve um erro ao atualizar, tente novamente.");
         console.log(error);
-
     }
 });
 
@@ -53,9 +49,9 @@ deleteAnimalBtn.addEventListener("click", async () => {
         await moreInfoHelpers.doDeleteRequestToServer(animalId);
         window.location.href = "./index.html";
         localStorage.removeItem("animalId");
-    } else {
-        return;
     }
+
+    return;
 });
 
 backLinkBtn.addEventListener("click", () => {

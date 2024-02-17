@@ -15,17 +15,13 @@ mainHelpers.performsTableActions(tableBody);
 
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
-
     mainHelpers.performsFormActions(formInputs, radioInputs);
-
     form.reset();
 });
 
 filterInput.addEventListener("input", () => {
-    const inputValue = filterInput.value;
     const tableBodyElements = document.querySelectorAll(".body__line");
-
-    filterElementsOnTable(inputValue, selectInput, tableBodyElements);
+    filterElementsOnTable(filterInput, selectInput, tableBodyElements);
 });
 
 table.addEventListener("dblclick", (event) => {
@@ -33,7 +29,6 @@ table.addEventListener("dblclick", (event) => {
     const idDadTargetElement = teagetElement.getAttribute("data-id");
 
     localStorage.setItem("animalId", idDadTargetElement);
-
     window.location.href = "../moreInfo.html";
 });
 
@@ -41,6 +36,5 @@ modifySomeBtn.addEventListener("click", () => {
     const numeroBrincos = prompt("Informe o número do brinco dos animais que você deseja modificar em grupo.");
 
     localStorage.setItem("stringOfAnimalsNumber", JSON.stringify(numeroBrincos));
-
     window.location.href = "./modifySome.html";
 });

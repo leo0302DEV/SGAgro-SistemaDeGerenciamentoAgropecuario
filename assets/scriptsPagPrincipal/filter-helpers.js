@@ -19,7 +19,8 @@ const iterateOnTable = (array, searchParam, inputValue) => {
     }
 }
 
-const filterElementsOnTable = (inputValue, selectValue, tableBodyElements) => {
+const filterElementsOnTable = (input, selectValue, tableBodyElements) => {
+    const inputValue = input.value;
 
     if (inputValue.length > 0) {
         const selectInputPref = returnSelectInputPreferense(selectValue);
@@ -38,10 +39,9 @@ const filterElementsOnTable = (inputValue, selectValue, tableBodyElements) => {
             selectInputPref = "brinco";
         }
     } else {
-        for (let i = 0; i < tableBodyElements.length; i++) {
-            const animal = tableBodyElements[i];
+        tableBodyElements.forEach(animal => {
             animal.classList.remove('invisivel');
-        }
+        });
     }
 }
 

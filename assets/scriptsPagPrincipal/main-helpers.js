@@ -1,33 +1,6 @@
 import serverFunctions from "../conectToServer.js";
 import formatDateMethodsObj from "../formatDateScripts.js";
 
-const catchInputsValue = (arrInputs, radioInputs) => {
-    const arrOfValues = [];
-    let radioinputValue;
-
-    arrInputs.forEach((element) => {
-        const elementValue = element.value;
-        arrOfValues.push(elementValue);
-    });
-
-    radioInputs.forEach((element) => {
-        if (element.checked) {
-            radioinputValue = element.value;
-        };
-    });
-
-    return {
-        numeroBrinco: arrOfValues[0],
-        idade: Number(arrOfValues[1]),
-        peso: Number(arrOfValues[2]),
-        dataCadastramento: arrOfValues[3],
-        raçaAnimal: arrOfValues[4],
-        sexoAnimal: radioinputValue,
-        historicoVeterinario: "",
-        prenhura: false,
-    };
-}
-
 const processInfoFromDb = (animalsArr) => {
     const processedArrOfAnimals = animalsArr.map((animal) => {
         return {
@@ -43,36 +16,45 @@ const processInfoFromDb = (animalsArr) => {
     return processedArrOfAnimals;
 }
 
+const catchInputsValue = (arrInputs, radioInputs) => {
+    const [numeroBrinco, idade, peso, dataCadastro, raca] = [...arrInputs].map(element => element.value);
+    const radioInputValue = [...radioInputs].find(element => element.checked).value;
+
+    return {
+        numeroBrinco: numeroBrinco,
+        idade: Number(idade),
+        peso: Number(peso),
+        dataCadastramento: dataCadastro,
+        raçaAnimal: raca,
+        sexoAnimal: radioInputValue,
+        historicoVeterinario: "",
+        prenhura: false,
+    };
+}
+
 const showInfoOnTable = (animalsArr, tableBody) => {
     const arrOfAnimalsInfo = processInfoFromDb(animalsArr);
 
     arrOfAnimalsInfo.forEach((animalsInfoObj) => {
+        const { numeroBrinco, peso, sexoAnimal, dataCadastramento, raçaAnimal, id } = animalsInfoObj;
+        const tdClassList = ["td__numero-brinco", "td__peso", "td__sexo-animal", "td__data-cadastro", "td__raca-animal"];
         const arrOfTds = [];
+
         const tr = document.createElement("tr");
-
         tr.classList.add("body__line");
-        tr.setAttribute("data-id", animalsInfoObj.id);
+        tr.setAttribute("data-id", id);
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < tdClassList.length; i++) {
             const td = document.createElement("td");
-            td.classList.add("line__cell");
+            td.classList.add("line__cell", tdClassList[i]);
             arrOfTds.push(td);
         }
 
-        arrOfTds[0].textContent = animalsInfoObj.numeroBrinco;
-        arrOfTds[0].classList.add("td__numero-brinco");
-
-        arrOfTds[1].textContent = animalsInfoObj.peso;
-        arrOfTds[1].classList.add("td__peso");
-
-        arrOfTds[2].textContent = animalsInfoObj.sexoAnimal;
-        arrOfTds[2].classList.add("td__sexo-animal");
-
-        arrOfTds[3].textContent = animalsInfoObj.dataCadastramento;
-        arrOfTds[3].classList.add("td__data-cadastro");
-
-        arrOfTds[4].textContent = animalsInfoObj.raçaAnimal;
-        arrOfTds[4].classList.add("td__raca-animal");
+        arrOfTds[0].textContent = numeroBrinco;
+        arrOfTds[1].textContent = peso;
+        arrOfTds[2].textContent = sexoAnimal;
+        arrOfTds[3].textContent = dataCadastramento;
+        arrOfTds[4].textContent = raçaAnimal;
 
         arrOfTds.forEach((tdElement) => {
             tr.appendChild(tdElement);

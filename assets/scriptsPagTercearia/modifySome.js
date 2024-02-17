@@ -22,7 +22,7 @@ saveInfoBtn.addEventListener("click", async () => {
         await serverFunctions.doPutInGroupRequest(numeroBrincos, modificationsObj);
         alert("Cadastros modificados com sucesso!");
     } catch (error) {
-        console.log(error);
         alert("Houve um erro, tente novamente");
+        console.log(error);
     }
 });
