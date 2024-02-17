@@ -1,4 +1,3 @@
-import serverFunctions from "../conectToServer.js";
 import moreInfoHelpers from "./moreInfo-helpers.js";
 
 const animalId = localStorage.getItem("animalId");
@@ -42,8 +41,8 @@ saveInfosBtn.addEventListener("click", () => {
 
         alert("Atualizado com sucesso!");
     } catch (error) {
-        alert("Não foi possível atualizar o registro. Tente novamente.");
-        console.error(error);
+        console.log(error);
+
     }
 });
 
