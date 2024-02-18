@@ -66,12 +66,17 @@ const showInfoOnTable = (animalsArr, tableBody) => {
 
 const performsTableActions = async (tableBody) => {
     const responseFromServer = await serverFunctions.returnAllAnimalsObj();
-    showInfoOnTable(responseFromServer, tableBody);
+
+    if (responseFromServer.status >= 400) {
+        alert(responseFromServer.message);
+    } else {
+        showInfoOnTable(responseFromServer, tableBody);
+    }
 }
 
-const performsFormActions = (formInputs, radioInputs) => {
+const performsFormActions = async (formInputs, radioInputs) => {
     const basicAnimalInfoObj = catchInputsValue(formInputs, radioInputs);
-    const response = serverFunctions.createElementOnDb(basicAnimalInfoObj);
+    const response = await serverFunctions.createElementOnDb(basicAnimalInfoObj);
 
     return response;
 }

@@ -28,17 +28,15 @@ tableBody.addEventListener("dblclick", (event) => {
     proptResposta ? tableBody.removeChild(eventFoucus) : null;
 });
 
-saveInfosBtn.addEventListener("click", () => {
-    try {
-        const tableInfoArr = moreInfoHelpers.catchTableInfos(tableBody);
-        const defautInfoObj = moreInfoHelpers.catchDefautInfoAndHistoric(defautInputs, selectOptionsInput, radioInputs, textArea);
+saveInfosBtn.addEventListener("click", async () => {
+    const tableInfoArr = moreInfoHelpers.catchTableInfos(tableBody);
+    const defautInfoObj = moreInfoHelpers.catchDefautInfoAndHistoric(defautInputs, selectOptionsInput, radioInputs, textArea);
+    const serverResponse = await moreInfoHelpers.doPutRequestToServer(tableInfoArr, defautInfoObj, animalId);
 
-        moreInfoHelpers.doPutRequestToServer(tableInfoArr, defautInfoObj, animalId);
-
-        alert("Atualizado com sucesso!");
-    } catch (error) {
-        alert("Houve um erro ao atualizar, tente novamente.");
-        console.log(error);
+    if (serverResponse.status >= 400) {
+        alert(serverResponse.message);
+    } else {
+        alert(serverResponse.message);
     }
 });
 
@@ -46,9 +44,15 @@ deleteAnimalBtn.addEventListener("click", async () => {
     const promptResposta = confirm("Você deseja excluir este cadastro do sistema? Cuidado! Esta ação é irreversível.");
 
     if (promptResposta) {
-        await moreInfoHelpers.doDeleteRequestToServer(animalId);
-        window.location.href = "./index.html";
-        localStorage.removeItem("animalId");
+        const serverResponse = await moreInfoHelpers.doDeleteRequestToServer(animalId);
+
+        if (serverResponse.status >= 400) {
+            alert(serverResponse.message);
+        } else {
+            window.location.href = "./index.html";
+            localStorage.removeItem("animalId");
+            alert(serverResponse.message);
+        }
     }
 
     return;

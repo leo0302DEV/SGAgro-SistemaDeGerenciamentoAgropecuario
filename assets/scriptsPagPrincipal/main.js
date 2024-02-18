@@ -21,7 +21,7 @@ submitButton.addEventListener("click", async (e) => {
     if (responseFromServer.status >= 400) {
         alert(responseFromServer.message);
     } else {
-        alert("Cadastrado com sucesso!");
+        alert(responseFromServer.message);
     }
 
     form.reset();
@@ -43,6 +43,10 @@ table.addEventListener("dblclick", (event) => {
 modifySomeBtn.addEventListener("click", () => {
     const numeroBrincos = prompt("Informe o número do brinco dos animais que você deseja modificar em grupo.");
 
-    localStorage.setItem("stringOfAnimalsNumber", JSON.stringify(numeroBrincos));
-    window.location.href = "./modifySome.html";
+    if (numeroBrincos) {
+        localStorage.setItem("stringOfAnimalsNumber", JSON.stringify(numeroBrincos));
+        window.location.href = "./modifySome.html";
+    }
+
+    return;
 });

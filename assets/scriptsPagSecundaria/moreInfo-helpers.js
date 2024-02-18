@@ -102,17 +102,20 @@ const catchTableInfos = (tableBody) => {
     return tableMedicInfoArr;
 }
 
-const doPutRequestToServer = (medArr, defaultInfoObj, animalId) => {
+const doPutRequestToServer = async (medArr, defaultInfoObj, animalId) => {
     const requestBody = {
         ...defaultInfoObj,
         medicamentacao: medArr,
     }
+    const response = await serverFunctions.doPutRequestToDb(requestBody, animalId);
 
-    serverFunctions.doPutRequestToDb(requestBody, animalId);
+    return response;
 }
 
 const doDeleteRequestToServer = async (animalId) => {
-    await serverFunctions.doDeleteRequestToDb(animalId);
+    const response = await serverFunctions.doDeleteRequestToDb(animalId);
+
+    return response;
 }
 
 const moreInfoHelpers = {
