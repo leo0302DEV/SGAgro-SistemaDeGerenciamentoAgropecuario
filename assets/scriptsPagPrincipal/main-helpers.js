@@ -71,7 +71,9 @@ const performsTableActions = async (tableBody) => {
 
 const performsFormActions = (formInputs, radioInputs) => {
     const basicAnimalInfoObj = catchInputsValue(formInputs, radioInputs);
-    serverFunctions.createElementOnDb(basicAnimalInfoObj);
+    const response = serverFunctions.createElementOnDb(basicAnimalInfoObj);
+
+    return response;
 }
 
 const mainHelpers = {

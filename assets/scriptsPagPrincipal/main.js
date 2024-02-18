@@ -13,9 +13,17 @@ const modifySomeBtn = document.querySelector(".main-content__modify-some-animals
 
 mainHelpers.performsTableActions(tableBody);
 
-submitButton.addEventListener("click", (e) => {
+submitButton.addEventListener("click", async (e) => {
     e.preventDefault();
-    mainHelpers.performsFormActions(formInputs, radioInputs);
+
+    const responseFromServer = await mainHelpers.performsFormActions(formInputs, radioInputs);
+
+    if (responseFromServer.status >= 400) {
+        alert(responseFromServer.message);
+    } else {
+        alert("Cadastrado com sucesso!");
+    }
+
     form.reset();
 });
 
