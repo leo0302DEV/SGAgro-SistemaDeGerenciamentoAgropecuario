@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ResetStyle from "../components/ResetStyle";
 import { FaGithub } from "react-icons/fa";
 import { AnimalsNumberProvider } from "../providers/AnimalsNumberProvider";
+import { CadastroFormProvider } from "../providers/CadastroFromProvider";
 
 const StyledTitle = styled.h1`
   font-size: 20px;
@@ -37,18 +38,20 @@ const StyledFooter = styled.footer`
 const PaginaMolde = () => {
   return (
     <AnimalsNumberProvider>
-      <ResetStyle />
-      <header>
-        <StyledTitle>SGAgro - Sistema de Gestão Agropecuária</StyledTitle>
-      </header>
-      <Outlet />
-      <StyledFooter>
-        <span>&copy;Leonardo Kramer Nadal</span>
-        <a href="https://github.com/leo0302DEV">
-          <FaGithub />
-          <span>Leo0302DEV</span>
-        </a>
-      </StyledFooter>
+      <CadastroFormProvider>
+        <ResetStyle />
+        <header>
+          <StyledTitle>SGAgro - Sistema de Gestão Agropecuária</StyledTitle>
+        </header>
+        <Outlet />
+        <StyledFooter>
+          <span>&copy;Leonardo Kramer Nadal</span>
+          <a href="https://github.com/leo0302DEV">
+            <FaGithub />
+            <span>Leo0302DEV</span>
+          </a>
+        </StyledFooter>
+      </CadastroFormProvider>
     </AnimalsNumberProvider>
   );
 };
