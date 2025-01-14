@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import CadastroForm from "../components/CadastroForm";
-import { CadastroFormContext } from "../providers/CadastroFromProvider";
-import { Button } from "@mui/material";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const StyledFormSection = styled.section`
   display: flex;
@@ -11,39 +9,28 @@ const StyledFormSection = styled.section`
   align-items: center;
 `;
 
-const Cadastro = () => {
-  const { brinco, sexo, idade, raca, peso, dataCadastro, prenhura } =
-    useContext(CadastroFormContext);
+const PageTitle = styled.h4`
+  font-weight: 300;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+`;
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log({
-      brinco,
-      sexo,
-      idade,
-      raca,
-      peso,
-      dataCadastro,
-      prenhura,
-    });
-  }
+const StyledText = styled.p`
+  cursor: pointer;
+  text-decoration: underline;
+`;
+
+const Cadastro = () => {
+  const navigate = useNavigate();
 
   return (
     <StyledFormSection>
+      <PageTitle>
+        <StyledText onClick={() => navigate("/")}>Início</StyledText> - cadastro
+      </PageTitle>
       <CadastroForm />
-      <Button
-        variant="outlined"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "4px",
-          fontSize: "18px",
-          borderRadius: "15px",
-        }}
-        onClick={(e) => handleSubmit(e)}
-      >
-        Cadastrar
-      </Button>
     </StyledFormSection>
   );
 };

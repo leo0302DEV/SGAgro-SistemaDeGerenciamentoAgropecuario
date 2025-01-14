@@ -11,9 +11,29 @@ export const CadastroFormProvider = ({ children }) => {
   const [dataCadastro, setDataCadastro] = useState(null);
   const [prenhura, setPrenhura] = useState(false);
 
+  function resetForm() {
+    setBrinco("");
+    setSexo("Fêmea");
+    setIdade("0-10");
+    setRaca("");
+    setPeso("");
+    setDataCadastro(null);
+    setPrenhura(false);
+  }
+
+  function validateForm() {
+    if (brinco === "" || raca === "" || peso === "" || dataCadastro === null) {
+      return false;
+    }
+
+    return true;
+  }
+
   return (
     <CadastroFormContext.Provider
       value={{
+        validateForm,
+        resetForm,
         brinco,
         setBrinco,
         sexo,
