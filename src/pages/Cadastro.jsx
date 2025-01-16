@@ -1,6 +1,8 @@
-import CadastroForm from "../components/CadastroForm";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { useContext } from "react";
+import { CadastroFormContext } from "../providers/CadastroFromProvider";
+import Formulario from "../components/Formulario";
 
 const StyledFormSection = styled.section`
   display: flex;
@@ -23,14 +25,61 @@ const StyledText = styled.p`
 `;
 
 const Cadastro = () => {
+  const {
+    brinco,
+    sexo,
+    idade,
+    raca,
+    peso,
+    dataCadastro,
+    prenhura,
+    resetForm,
+    validateForm,
+  } = useContext(CadastroFormContext);
+
   const navigate = useNavigate();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!validateForm()) {
+      alert("Preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    fetch("http://localhost:3000/animals", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        earringId: brinco,
+        age: idade,
+        weight: peso,
+        registerDate: dataCadastro,
+        sex: sexo,
+        pregnantState: JSON.parse(prenhura),
+        race: raca,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+        resetForm();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Erro ao cadastrar animal.");
+      });
+  }
 
   return (
     <StyledFormSection>
       <PageTitle>
         <StyledText onClick={() => navigate("/")}>Início</StyledText> - cadastro
       </PageTitle>
-      <CadastroForm />
+
+      <Formulario handleSubmit={handleSubmit} context={CadastroFormContext} />
     </StyledFormSection>
   );
 };

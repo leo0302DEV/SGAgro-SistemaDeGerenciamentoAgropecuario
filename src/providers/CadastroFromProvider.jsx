@@ -8,7 +8,7 @@ export const CadastroFormProvider = ({ children }) => {
   const [idade, setIdade] = useState("0-10");
   const [raca, setRaca] = useState("");
   const [peso, setPeso] = useState("");
-  const [dataCadastro, setDataCadastro] = useState(null);
+  const [dataCadastro, setDataCadastro] = useState("");
   const [prenhura, setPrenhura] = useState(false);
 
   function resetForm() {
@@ -17,12 +17,12 @@ export const CadastroFormProvider = ({ children }) => {
     setIdade("0-10");
     setRaca("");
     setPeso("");
-    setDataCadastro(null);
+    setDataCadastro("");
     setPrenhura(false);
   }
 
   function validateForm() {
-    if (brinco === "" || raca === "" || peso === "" || dataCadastro === null) {
+    if (brinco === "" || raca === "" || peso === "" || dataCadastro === "") {
       return false;
     }
 
