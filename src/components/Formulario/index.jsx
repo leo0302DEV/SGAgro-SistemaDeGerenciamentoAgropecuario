@@ -16,18 +16,8 @@ const StyledForm = styled.form`
 
 const opcoesIdade = ["0-10", "11-20", "21-30", "31-36", "36+"];
 const opcoesSexo = ["Macho", "Fêmea"];
-const opcoesPrenhura = [
-  {
-    value: true,
-    label: "Sim",
-  },
-  {
-    value: false,
-    label: "Não",
-  },
-];
 
-const Formulario = ({ handleSubmit, context }) => {
+const Formulario = ({ handleSubmit, context, buttonName }) => {
   const {
     brinco,
     setBrinco,
@@ -94,10 +84,10 @@ const Formulario = ({ handleSubmit, context }) => {
 
       <CampoRadio
         label={"Prenhura"}
-        options={opcoesPrenhura}
         onChange={(e) => {
           setPrenhura(e.target.value);
         }}
+        context={context}
       />
 
       <Button
@@ -114,7 +104,7 @@ const Formulario = ({ handleSubmit, context }) => {
         onClick={(e) => handleSubmit(e)}
         type="submit"
       >
-        Cadastrar
+        {buttonName}
       </Button>
     </StyledForm>
   );

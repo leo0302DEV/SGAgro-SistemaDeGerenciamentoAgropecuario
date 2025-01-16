@@ -79,7 +79,11 @@ const Cadastro = () => {
         <StyledText onClick={() => navigate("/")}>Início</StyledText> - cadastro
       </PageTitle>
 
-      <Formulario handleSubmit={handleSubmit} context={CadastroFormContext} />
+      <Formulario
+        handleSubmit={handleSubmit}
+        context={CadastroFormContext}
+        buttonName={"Cadastrar"}
+      />
     </StyledFormSection>
   );
 };

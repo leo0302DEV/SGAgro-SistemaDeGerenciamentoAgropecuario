@@ -1,4 +1,6 @@
+import { useContext, useState } from "react";
 import styled from "styled-components";
+import { ModificarIndividualFormContext } from "../../../providers/ModificarIndividualFormProvider";
 
 const StyledSection = styled.section`
   display: flex;
@@ -34,24 +36,68 @@ const StyledRadioLabel = styled.label`
   font-weight: 300;
 `;
 
-const CampoRadio = ({ options, label, onChange }) => {
+const CampoRadio = ({ label, onChange, context }) => {
+  if (context === ModificarIndividualFormContext) {
+    const { radioValue, setRadioValue } = useContext(context);
+
+    return (
+      <StyledSection>
+        <StyledLabel>{label}</StyledLabel>
+        <StyledRadioBox>
+          <StyledRadioLabel>
+            <StyledInput
+              type="radio"
+              name="radio"
+              value={true}
+              onChange={(e) => {
+                onChange(e);
+                setRadioValue(true);
+              }}
+              checked={radioValue === true}
+            />
+            {"Sim"}
+          </StyledRadioLabel>
+          <StyledRadioLabel>
+            <StyledInput
+              type="radio"
+              name="radio"
+              value={false}
+              onChange={(e) => {
+                onChange(e);
+                setRadioValue(false);
+              }}
+              checked={radioValue === false}
+            />
+            {"Não"}
+          </StyledRadioLabel>
+        </StyledRadioBox>
+      </StyledSection>
+    );
+  }
+
+  // Caso o contexto seja diferente, renderiza uma versão básica:
   return (
     <StyledSection>
       <StyledLabel>{label}</StyledLabel>
       <StyledRadioBox>
-        {options.map((option) => {
-          return (
-            <StyledRadioLabel key={option.label}>
-              <StyledInput
-                type="radio"
-                name="radio"
-                value={option.value}
-                onChange={onChange}
-              />
-              {option.label}
-            </StyledRadioLabel>
-          );
-        })}
+        <StyledRadioLabel>
+          <StyledInput
+            type="radio"
+            name="radio"
+            value={true}
+            onChange={onChange}
+          />
+          {"Sim"}
+        </StyledRadioLabel>
+        <StyledRadioLabel>
+          <StyledInput
+            type="radio"
+            name="radio"
+            value={false}
+            onChange={onChange}
+          />
+          {"Não"}
+        </StyledRadioLabel>
       </StyledRadioBox>
     </StyledSection>
   );

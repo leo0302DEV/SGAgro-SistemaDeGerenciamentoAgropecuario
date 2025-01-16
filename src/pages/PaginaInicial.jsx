@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { AnimalsNumberContext } from "../providers/AnimalsNumberProvider";
 import ButtonsContainer from "../components/ButtonsContainer";
 import formatDate from "../utils/formatDate.js";
+import { useNavigate } from "react-router-dom";
 
 const PageBody = styled.main`
   display: flex;
@@ -23,47 +24,52 @@ const TableTitle = styled.h2`
   margin-bottom: 1rem;
 `;
 
-const columns = [
-  { field: "brinco", headerName: "Brinco", width: 120 },
-  {
-    field: "sexo",
-    headerName: "Sexo",
-    width: 120,
-  },
-  {
-    field: "peso",
-    headerName: "Peso (kg)",
-    width: 150,
-  },
-  {
-    field: "cadastro",
-    headerName: "Data do cadastro",
-    width: 180,
-  },
-  {
-    field: "raca",
-    headerName: "Raça",
-    width: 300,
-  },
-  {
-    field: "actions",
-    headerName: "Editar",
-    width: 100,
-    sortable: false,
-    disableColumnMenu: true,
-    renderCell: (params) => (
-      <IconButton color="black" onClick={() => console.log("olá mundo!")}>
-        <MdEdit />
-      </IconButton>
-    ),
-  },
-];
-
-const paginationModel = { page: 0, pageSize: 5 };
-
 const PaginaInicial = () => {
   const { setSelectedRows } = useContext(AnimalsNumberContext);
   const [rows, setRows] = useState([]);
+  const navigate = useNavigate();
+
+  const columns = [
+    { field: "brinco", headerName: "Brinco", width: 120 },
+    {
+      field: "sexo",
+      headerName: "Sexo",
+      width: 120,
+    },
+    {
+      field: "peso",
+      headerName: "Peso (kg)",
+      width: 150,
+    },
+    {
+      field: "cadastro",
+      headerName: "Data do cadastro",
+      width: 180,
+    },
+    {
+      field: "raca",
+      headerName: "Raça",
+      width: 300,
+    },
+    {
+      field: "actions",
+      headerName: "Editar",
+      width: 100,
+      sortable: false,
+      disableColumnMenu: true,
+      renderCell: (params) => (
+        <IconButton
+          color="black"
+          onClick={() => {
+            navigate(`/modificarIndividual/${params.row.id}`);
+          }}
+        >
+          <MdEdit />
+        </IconButton>
+      ),
+    },
+  ];
+  const paginationModel = { page: 0, pageSize: 10 };
 
   function handleSelection(data) {
     setSelectedRows(data);
