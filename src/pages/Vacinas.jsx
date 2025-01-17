@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md";
 import LoggingBanner from "../components/LoggingBanner";
 import styled from "styled-components";
 import formatDate from "../utils/formatDate.js";
+import VacinasFormulario from "../components/VacinasFormulario/index.jsx";
 
 const PageTitle = styled.h4`
   font-weight: 300;
@@ -126,6 +127,8 @@ const Vacinas = () => {
           sx={{ border: 0 }}
         />
       </Paper>
+
+      <VacinasFormulario animalId={id} />
     </StyledSection>
   );
 };

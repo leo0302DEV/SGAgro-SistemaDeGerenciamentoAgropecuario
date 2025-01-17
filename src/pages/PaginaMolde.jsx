@@ -10,6 +10,7 @@ const StyledTitle = styled.h1`
   font-size: 20px;
   text-align: center;
   margin: 2rem 0 2.5rem 0;
+  padding: 1rem;
 `;
 
 const StyledFooter = styled.footer`

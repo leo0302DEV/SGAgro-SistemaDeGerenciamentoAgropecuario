@@ -14,8 +14,38 @@ const StyledForm = styled.form`
   padding: 0 1.5rem;
 `;
 
-const opcoesIdade = ["0-10", "11-20", "21-30", "31-36", "36+"];
-const opcoesSexo = ["Macho", "Fêmea"];
+const opcoesIdade = [
+  {
+    nome: "0-10",
+    idValue: null,
+  },
+  {
+    nome: "11-20",
+    idValue: null,
+  },
+  {
+    nome: "21-30",
+    idValue: null,
+  },
+  {
+    nome: "31-36",
+    idValue: null,
+  },
+  {
+    nome: "36+",
+    idValue: null,
+  },
+];
+const opcoesSexo = [
+  {
+    nome: "Fêmea",
+    idValue: null,
+  },
+  {
+    nome: "Macho",
+    idValue: null,
+  },
+];
 
 const Formulario = ({ handleSubmit, context, buttonName }) => {
   const {

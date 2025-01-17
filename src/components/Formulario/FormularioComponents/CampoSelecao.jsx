@@ -40,8 +40,12 @@ const CampoSelecao = ({ label, options, value, onChange }) => {
     <StyledBox>
       <StyledSelect onChange={onChange} value={value}>
         {options.map((option) => (
-          <option value={option} key={option}>
-            {option}
+          <option
+            data-id={option.idValue}
+            value={option.nome}
+            key={option.nome}
+          >
+            {option.nome}
           </option>
         ))}
       </StyledSelect>
