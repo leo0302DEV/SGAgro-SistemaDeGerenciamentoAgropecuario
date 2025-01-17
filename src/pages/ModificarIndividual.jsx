@@ -141,7 +141,9 @@ const ModificarIndividual = () => {
             width: "40%",
             alignSelf: "center",
           }}
-          onClick={() => navigate(`/modificarIndividual/${id}/vacinas`)}
+          onClick={() =>
+            navigate(`/modificarIndividual/${brinco}/${id}/vacinas`)
+          }
         >
           Vacinas
         </Button>

@@ -18,7 +18,10 @@ const AppRouter = () => {
             path="modificarIndividual/:id"
             element={<ModificarIndividual />}
           />
-          <Route path="modificarIndividual/:id/vacinas" element={<Vacinas />} />
+          <Route
+            path="modificarIndividual/:brinco/:id/vacinas"
+            element={<Vacinas />}
+          />
           <Route path="modificarIndividual/:id/notas" element={<Notas />} />
           <Route path="modificarGrupo" element={<ModificarGrupo />} />
         </Route>
