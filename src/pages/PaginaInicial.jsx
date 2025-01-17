@@ -7,6 +7,7 @@ import { AnimalsNumberContext } from "../providers/AnimalsNumberProvider";
 import ButtonsContainer from "../components/ButtonsContainer";
 import formatDate from "../utils/formatDate.js";
 import { useNavigate } from "react-router-dom";
+import LoggingBanner from "../components/LoggingBanner.jsx";
 
 const PageBody = styled.main`
   display: flex;
@@ -27,6 +28,7 @@ const TableTitle = styled.h2`
 const PaginaInicial = () => {
   const { setSelectedRows } = useContext(AnimalsNumberContext);
   const [rows, setRows] = useState([]);
+  const [logging, setLogging] = useState(true);
   const navigate = useNavigate();
 
   const columns = [
@@ -88,8 +90,13 @@ const PaginaInicial = () => {
           raca: animal.race,
         }));
         setRows(animais);
+        setLogging(false);
       });
   }, []);
+
+  if (logging) {
+    return <LoggingBanner />;
+  }
 
   return (
     <PageBody>

@@ -98,7 +98,7 @@ const Formulario = ({ handleSubmit, context, buttonName }) => {
           gap: "4px",
           fontSize: "18px",
           borderRadius: "15px",
-          width: "30%",
+          width: "40%",
           alignSelf: "center",
         }}
         onClick={(e) => handleSubmit(e)}

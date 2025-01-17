@@ -3,6 +3,8 @@ import Formulario from "../components/Formulario/index";
 import { ModificarIndividualFormContext } from "../providers/ModificarIndividualFormProvider";
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import { Button } from "@mui/material";
+import LoggingBanner from "../components/LoggingBanner";
 
 const PageTitle = styled.h4`
   font-weight: 300;
@@ -24,9 +26,19 @@ const StyledSection = styled.section`
   gap: 1rem;
 `;
 
+const StyledBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
+`;
+
 const ModificarIndividual = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [logging, setLogging] = useState(true);
 
   const {
     brinco,
@@ -61,6 +73,8 @@ const ModificarIndividual = () => {
         setDataCadastro(animalData.registerDate);
         setPrenhura(animalData.pregnantState);
         setRadioValue(animalData.pregnantState);
+
+        setLogging(false);
       })
       .catch((error) => {
         console.log(error);
@@ -99,6 +113,10 @@ const ModificarIndividual = () => {
       });
   }
 
+  if (logging) {
+    return <LoggingBanner />;
+  }
+
   return (
     <StyledSection>
       <PageTitle>
@@ -110,6 +128,40 @@ const ModificarIndividual = () => {
         context={ModificarIndividualFormContext}
         buttonName={"Atualizar"}
       />
+
+      <StyledBox>
+        <Button
+          variant="outlined"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+            fontSize: "18px",
+            borderRadius: "15px",
+            width: "40%",
+            alignSelf: "center",
+          }}
+          onClick={() => navigate(`/modificarIndividual/${id}/vacinas`)}
+        >
+          Vacinas
+        </Button>
+
+        <Button
+          variant="outlined"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+            fontSize: "18px",
+            borderRadius: "15px",
+            width: "40%",
+            alignSelf: "center",
+          }}
+          onClick={() => navigate(`/modificarIndividual/${id}/notas`)}
+        >
+          Notas
+        </Button>
+      </StyledBox>
     </StyledSection>
   );
 };
