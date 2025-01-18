@@ -1,13 +1,13 @@
 import { IconButton, Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { MdEdit } from "react-icons/md";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { AnimalsNumberContext } from "../providers/AnimalsNumberProvider";
-import ButtonsContainer from "../components/ButtonsContainer";
 import formatDate from "../utils/formatDate.js";
 import { useNavigate } from "react-router-dom";
 import LoggingBanner from "../components/LoggingBanner.jsx";
+import { FaPlus } from "react-icons/fa6";
+import { Button } from "@mui/material";
 
 const PageBody = styled.main`
   display: flex;
@@ -26,7 +26,6 @@ const TableTitle = styled.h2`
 `;
 
 const PaginaInicial = () => {
-  const { setSelectedRows } = useContext(AnimalsNumberContext);
   const [rows, setRows] = useState([]);
   const [logging, setLogging] = useState(true);
   const navigate = useNavigate();
@@ -73,10 +72,6 @@ const PaginaInicial = () => {
   ];
   const paginationModel = { page: 0, pageSize: 10 };
 
-  function handleSelection(data) {
-    setSelectedRows(data);
-  }
-
   useEffect(() => {
     fetch("http://localhost:3000/animals")
       .then((response) => response.json())
@@ -108,13 +103,24 @@ const PaginaInicial = () => {
           columns={columns}
           initialState={{ pagination: { paginationModel } }}
           pageSizeOptions={[5, 10]}
-          checkboxSelection
-          onRowSelectionModelChange={(data) => handleSelection(data)}
-          disableRowSelectionOnClick={true}
           sx={{ border: 0 }}
         />
       </Paper>
-      <ButtonsContainer />
+      <Button
+        variant="outlined"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "4px",
+          fontSize: "18px",
+          borderRadius: "15px",
+          marginTop: "2.5rem",
+        }}
+        onClick={() => navigate("/cadastro")}
+      >
+        <FaPlus />
+        Cadastrar
+      </Button>
     </PageBody>
   );
 };

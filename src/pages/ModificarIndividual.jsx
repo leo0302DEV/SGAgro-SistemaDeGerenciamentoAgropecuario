@@ -162,10 +162,10 @@ const ModificarIndividual = () => {
             alignSelf: "center",
           }}
           onClick={() =>
-            navigate(`/modificarIndividual/${brinco}/${id}/vacinas`)
+            navigate(`/modificarIndividual/${brinco}/${id}/medicamentos`)
           }
         >
-          Vacinas
+          Medicamentos
         </Button>
 
         <Button

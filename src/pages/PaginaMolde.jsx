@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import ResetStyle from "../components/ResetStyle";
 import { FaGithub } from "react-icons/fa";
-import { AnimalsNumberProvider } from "../providers/AnimalsNumberProvider";
 import { CadastroFormProvider } from "../providers/CadastroFromProvider";
 import { ModificarIndividualFormProvider } from "../providers/ModificarIndividualFormProvider";
 
@@ -39,24 +38,22 @@ const StyledFooter = styled.footer`
 
 const PaginaMolde = () => {
   return (
-    <AnimalsNumberProvider>
-      <CadastroFormProvider>
-        <ModificarIndividualFormProvider>
-          <ResetStyle />
-          <header>
-            <StyledTitle>SGAgro - Sistema de Gestão Agropecuária</StyledTitle>
-          </header>
-          <Outlet />
-          <StyledFooter>
-            <span>&copy;Leonardo Kramer Nadal</span>
-            <a href="https://github.com/leo0302DEV">
-              <FaGithub />
-              <span>Leo0302DEV</span>
-            </a>
-          </StyledFooter>
-        </ModificarIndividualFormProvider>
-      </CadastroFormProvider>
-    </AnimalsNumberProvider>
+    <CadastroFormProvider>
+      <ModificarIndividualFormProvider>
+        <ResetStyle />
+        <header>
+          <StyledTitle>SGAgro - Sistema de Gestão Agropecuária</StyledTitle>
+        </header>
+        <Outlet />
+        <StyledFooter>
+          <span>&copy;Leonardo Kramer Nadal</span>
+          <a href="https://github.com/leo0302DEV" target="_blank">
+            <FaGithub />
+            <span>Leo0302DEV</span>
+          </a>
+        </StyledFooter>
+      </ModificarIndividualFormProvider>
+    </CadastroFormProvider>
   );
 };
 

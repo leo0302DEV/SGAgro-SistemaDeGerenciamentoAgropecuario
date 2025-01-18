@@ -3,10 +3,10 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-import LoggingBanner from "../components/LoggingBanner";
+import LoggingBanner from "../components/LoggingBanner.jsx";
 import styled from "styled-components";
 import formatDate from "../utils/formatDate.js";
-import VacinasFormulario from "../components/VacinasFormulario/index.jsx";
+import MedicamentosFormulario from "../components/MedicamentosFormulario/index.jsx";
 
 const PageTitle = styled.h4`
   font-weight: 300;
@@ -33,7 +33,7 @@ const StyledSection = styled.section`
   gap: 1rem;
 `;
 
-const Vacinas = () => {
+const Medicamentos = () => {
   const { id, brinco } = useParams();
   const [rows, setRows] = useState([]);
   const [logging, setLogging] = useState(true);
@@ -65,18 +65,18 @@ const Vacinas = () => {
     fetch(`http://localhost:3000/animalVaccines/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        const vacinas = data.map((vacina) => ({
-          id: vacina.id,
-          nome: vacina.Vaccine.name,
-          dataAplicacao: formatDate(vacina.applicationDate),
+        const Medicamentos = data.map((medicamento) => ({
+          id: medicamento.id,
+          nome: medicamento.Vaccine.name,
+          dataAplicacao: formatDate(medicamento.applicationDate),
         }));
 
-        setRows(vacinas);
+        setRows(Medicamentos);
         setLogging(false);
       })
       .catch((error) => {
         alert(
-          "Parece que esse animal ainda não tem registros de vacinação no banco."
+          "Parece que esse animal ainda não tem registros de medicações no banco."
         );
         console.log(error);
       });
@@ -96,7 +96,9 @@ const Vacinas = () => {
           location.reload();
         })
         .catch((error) => {
-          alert("Erro ao deletar informações sobre essa vacina do animal.");
+          alert(
+            "Erro ao deletar informações sobre esse medicamento do animal."
+          );
           console.log(error);
         });
     }
@@ -112,10 +114,10 @@ const Vacinas = () => {
     <StyledSection>
       <PageTitle>
         Início - <StyledText onClick={() => navigate(-1)}>detalhes</StyledText>{" "}
-        - vacinas
+        - Medicamentos
       </PageTitle>
 
-      <TableTitle>Vacinas do animal ({brinco})</TableTitle>
+      <TableTitle>Medicamentos do animal ({brinco})</TableTitle>
 
       <Paper sx={{ height: 400, width: "97%" }}>
         <DataGrid
@@ -128,9 +130,9 @@ const Vacinas = () => {
         />
       </Paper>
 
-      <VacinasFormulario animalId={id} />
+      <MedicamentosFormulario animalId={id} />
     </StyledSection>
   );
 };
 
-export default Vacinas;
+export default Medicamentos;

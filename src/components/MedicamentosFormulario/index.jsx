@@ -3,7 +3,7 @@ import CampoSelecao from "../Formulario/FormularioComponents/CampoSelecao";
 import { Button } from "@mui/material";
 import CampoData from "../Formulario/FormularioComponents/CampoData";
 import styled from "styled-components";
-import NovoRegistroForm from "./VacinasFormularioComponents/NovoRegistroForm";
+import NovoRegistroForm from "./MedicamentosFormularioComponents/NovoRegistroForm.jsx";
 
 const StyledFormTitle = styled.h3`
   font-size: 18px;
@@ -26,9 +26,9 @@ const StyledForm = styled.form`
   gap: 1.5rem;
 `;
 
-const VacinasFormulario = ({ animalId }) => {
-  const [vacinas, setVacinas] = useState([]);
-  const [vacinaSelecionada, setVacinaSelecionada] = useState();
+const MedicamentosFormulario = ({ animalId }) => {
+  const [medicamentos, setMedicamentos] = useState([]);
+  const [medicamentoSelecionado, setMedicamentoSelecionado] = useState();
   const [dataAplicacao, setDataAplicacao] = useState("");
   const [click, setClick] = useState(0);
 
@@ -36,13 +36,13 @@ const VacinasFormulario = ({ animalId }) => {
     fetch("http://localhost:3000/vaccines")
       .then((response) => response.json())
       .then((data) => {
-        const vacinasArr = data.map((vacina) => ({
+        const medicamentosArr = data.map((vacina) => ({
           nome: vacina.name,
           idValue: vacina.id,
         }));
 
-        setVacinaSelecionada(vacinasArr[0].idValue);
-        setVacinas(vacinasArr);
+        setMedicamentoSelecionado(medicamentosArr[0].idValue);
+        setMedicamentos(medicamentosArr);
       });
   }, []);
 
@@ -55,7 +55,7 @@ const VacinasFormulario = ({ animalId }) => {
       body: JSON.stringify({
         applicationDate: dataAplicacao,
         AnimalId: Number(animalId),
-        VaccineId: Number(vacinaSelecionada),
+        VaccineId: Number(medicamentoSelecionado),
       }),
     })
       .then((response) => response.json())
@@ -75,9 +75,9 @@ const VacinasFormulario = ({ animalId }) => {
 
       <CampoSelecao
         label={"Selecione o medicamento"}
-        options={[...vacinas]}
+        options={[...medicamentos]}
         onChange={(e) =>
-          setVacinaSelecionada(e.target.selectedOptions[0].dataset.id)
+          setMedicamentoSelecionado(e.target.selectedOptions[0].dataset.id)
         }
       />
 
@@ -121,4 +121,4 @@ const VacinasFormulario = ({ animalId }) => {
   );
 };
 
-export default VacinasFormulario;
+export default MedicamentosFormulario;

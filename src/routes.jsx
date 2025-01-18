@@ -2,9 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PaginaMolde from "./pages/PaginaMolde";
 import PaginaInicial from "./pages/PaginaInicial";
 import Cadastro from "./pages/Cadastro";
-import ModificarGrupo from "./pages/ModificarGrupo";
 import ModificarIndividual from "./pages/ModificarIndividual";
-import Vacinas from "./pages/Vacinas";
+import Medicamentos from "./pages/Medicamentos";
 import Notas from "./pages/Notas";
 
 const AppRouter = () => {
@@ -19,14 +18,13 @@ const AppRouter = () => {
             element={<ModificarIndividual />}
           />
           <Route
-            path="modificarIndividual/:brinco/:id/vacinas"
-            element={<Vacinas />}
+            path="modificarIndividual/:brinco/:id/medicamentos"
+            element={<Medicamentos />}
           />
           <Route
             path="modificarIndividual/:brinco/:id/notas"
             element={<Notas />}
           />
-          <Route path="modificarGrupo" element={<ModificarGrupo />} />
         </Route>
       </Routes>
     </BrowserRouter>
