@@ -5,6 +5,8 @@ import formatDate from "../utils/formatDate.js";
 import { Button } from "@mui/material";
 import { MdDelete } from "react-icons/md";
 import LoggingBanner from "../components/LoggingBanner";
+import CampoData from "../components/Formulario/FormularioComponents/CampoData";
+import CampoTexto from "../components/Formulario/FormularioComponents/CampoTexto";
 
 const StyledSection = styled.section`
   display: flex;
@@ -58,11 +60,23 @@ const StyledMessage = styled.p`
   text-align: center;
 `;
 
+const StyledForm = styled.form`
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+`;
+
 const Notas = () => {
   const { id, brinco } = useParams();
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [logging, setLogging] = useState(true);
+  const [novaNotaData, setNovaNotaData] = useState("");
+  const [novaNota, setNovaNota] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:3000/notes/${id}`)
@@ -91,6 +105,29 @@ const Notas = () => {
     }
 
     return;
+  }
+
+  function criarNovaNota() {
+    fetch("http://localhost:3000/notes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        animalId: Number(id),
+        creationDate: novaNotaData,
+        anotations: novaNota,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+        location.reload();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Erro ao cadastrar animal.");
+      });
   }
 
   if (logging) {
@@ -141,6 +178,38 @@ const Notas = () => {
           </StyledMessage>
         )}
       </StyledList>
+
+      <StyledForm>
+        <TableTitle>Adicione notas para esse animal</TableTitle>
+
+        <CampoData
+          label={"Data da anotação"}
+          onChange={(e) => setNovaNotaData(e.target.value)}
+          value={novaNotaData}
+        />
+
+        <CampoTexto
+          label={"Anotação"}
+          onChange={(e) => setNovaNota(e.target.value)}
+          value={novaNota}
+        />
+
+        <Button
+          variant="outlined"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+            fontSize: "16px",
+            borderRadius: "15px",
+            width: "40%",
+            alignSelf: "center",
+          }}
+          onClick={() => criarNovaNota()}
+        >
+          Postar
+        </Button>
+      </StyledForm>
     </StyledSection>
   );
 };
