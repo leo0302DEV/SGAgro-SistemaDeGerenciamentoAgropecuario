@@ -40,6 +40,29 @@ const NovoRegistroForm = () => {
   const [novoMedicamentoNome, setNovoMedicamentoNome] = useState("");
   const [novoMedicamentoAplic, setNovoMedicamentoAplic] = useState("");
 
+  function criarNovoMedicamento() {
+    fetch("http://localhost:3000/vaccines", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: novoMedicamentoNome,
+        indicationAplic: novoMedicamentoAplic,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+        location.reload();
+        console.log(data);
+      })
+      .catch((error) => {
+        alert("Erro ao criar novo medicamento");
+        console.log(error);
+      });
+  }
+
   return (
     <StyledContainer>
       <StyledFormTitle>Criar novo medicamento no banco</StyledFormTitle>
@@ -65,9 +88,7 @@ const NovoRegistroForm = () => {
           fontSize: "16px",
           borderRadius: "15px",
         }}
-        onClick={() => {
-          console.log(novoMedicamentoNome, novoMedicamentoAplic);
-        }}
+        onClick={() => criarNovoMedicamento()}
       >
         <FaPlus />
         Criar novo medicamento
