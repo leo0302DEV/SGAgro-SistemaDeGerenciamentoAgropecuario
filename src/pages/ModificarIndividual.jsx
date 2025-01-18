@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "@mui/material";
 import LoggingBanner from "../components/LoggingBanner";
+import { MdDelete } from "react-icons/md";
 
 const PageTitle = styled.h4`
   font-weight: 300;
@@ -113,6 +114,25 @@ const ModificarIndividual = () => {
       });
   }
 
+  function deletarRegistro() {
+    if (confirm("Você deseja mesmo deletar esse registro?")) {
+      fetch(`http://localhost:3000/animals/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message);
+          navigate(-1);
+        })
+        .catch((error) => console.log(error));
+    }
+
+    return;
+  }
+
   if (logging) {
     return <LoggingBanner />;
   }
@@ -159,11 +179,31 @@ const ModificarIndividual = () => {
             width: "40%",
             alignSelf: "center",
           }}
-          onClick={() => navigate(`/modificarIndividual/${id}/notas`)}
+          onClick={() => navigate(`/modificarIndividual/${brinco}/${id}/notas`)}
         >
           Notas
         </Button>
       </StyledBox>
+
+      <Button
+        variant="outlined"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "4px",
+          fontSize: "18px",
+          borderRadius: "15px",
+          width: "60%",
+          alignSelf: "center",
+          marginTop: ".9rem",
+          borderColor: "red",
+          color: "red",
+        }}
+        onClick={() => deletarRegistro()}
+      >
+        <MdDelete color="red" />
+        Deletar animal
+      </Button>
     </StyledSection>
   );
 };

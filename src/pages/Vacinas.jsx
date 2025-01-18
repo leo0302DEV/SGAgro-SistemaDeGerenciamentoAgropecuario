@@ -21,16 +21,16 @@ const StyledText = styled.p`
   text-decoration: underline;
 `;
 
+const TableTitle = styled.h2`
+  font-size: 18px;
+  margin-bottom: 1rem;
+`;
+
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-`;
-
-const TableTitle = styled.h2`
-  font-size: 18px;
-  margin-bottom: 1rem;
 `;
 
 const Vacinas = () => {
