@@ -5,6 +5,7 @@ import Cadastro from "./pages/Cadastro";
 import ModificarIndividual from "./pages/ModificarIndividual";
 import Medicamentos from "./pages/Medicamentos";
 import Notas from "./pages/Notas";
+import ATAPage from "./pages/ATAPage";
 
 const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ const AppRouter = () => {
             element={<Notas />}
           />
         </Route>
+        <Route path="/ATA/:id" element={<ATAPage />} />
       </Routes>
     </BrowserRouter>
   );

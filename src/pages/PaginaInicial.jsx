@@ -7,6 +7,7 @@ import formatDate from "../utils/formatDate.js";
 import { useNavigate } from "react-router-dom";
 import LoggingBanner from "../components/LoggingBanner.jsx";
 import { FaPlus } from "react-icons/fa6";
+import { MdOutlineLocalPrintshop } from "react-icons/md";
 import { Button } from "@mui/material";
 
 const PageBody = styled.main`
@@ -69,6 +70,18 @@ const PaginaInicial = () => {
         </IconButton>
       ),
     },
+    {
+      field: "print",
+      headerName: "Imprimir ATA",
+      width: 150,
+      sortable: false,
+      disableColumnMenu: true,
+      renderCell: (params) => (
+        <IconButton color="black" onClick={() => fetchATA(params)}>
+          <MdOutlineLocalPrintshop />
+        </IconButton>
+      ),
+    },
   ];
   const paginationModel = { page: 0, pageSize: 10 };
 
@@ -88,6 +101,12 @@ const PaginaInicial = () => {
         setLogging(false);
       });
   }, []);
+
+  function fetchATA(params) {
+    const id = params.row.id;
+
+    navigate(`/ATA/${id}`);
+  }
 
   if (logging) {
     return <LoggingBanner />;
