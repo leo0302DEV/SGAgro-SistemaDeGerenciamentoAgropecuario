@@ -89,6 +89,12 @@ const PaginaInicial = () => {
     fetch("https://sgpec-server-side-app.onrender.com/animals")
       .then((response) => response.json())
       .then((data) => {
+        if (data.status && data.status === 404) {
+          alert(data.message);
+          setLogging(false);
+          return;
+        }
+
         const animais = data.map((animal) => ({
           id: animal.id,
           brinco: animal.earringId,
@@ -99,6 +105,9 @@ const PaginaInicial = () => {
         }));
         setRows(animais);
         setLogging(false);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 
