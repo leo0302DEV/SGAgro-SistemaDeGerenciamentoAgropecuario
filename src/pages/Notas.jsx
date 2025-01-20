@@ -79,7 +79,7 @@ const Notas = () => {
   const [novaNota, setNovaNota] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/notes/${id}`)
+    fetch(`https://sgpec-server-side-app.onrender.com/notes/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setNotes(data);
@@ -90,7 +90,7 @@ const Notas = () => {
 
   function deletarNota(notaId) {
     if (confirm("Você deseja mesmo deletar essa nota?")) {
-      fetch(`http://localhost:3000/notes/${notaId}`, {
+      fetch(`https://sgpec-server-side-app.onrender.com/notes/${notaId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +108,7 @@ const Notas = () => {
   }
 
   function criarNovaNota() {
-    fetch("http://localhost:3000/notes", {
+    fetch("https://sgpec-server-side-app.onrender.com/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

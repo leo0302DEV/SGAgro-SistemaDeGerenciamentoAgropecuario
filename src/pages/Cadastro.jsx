@@ -47,7 +47,7 @@ const Cadastro = () => {
       return;
     }
 
-    fetch("http://localhost:3000/animals", {
+    fetch("https://sgpec-server-side-app.onrender.com/animals", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

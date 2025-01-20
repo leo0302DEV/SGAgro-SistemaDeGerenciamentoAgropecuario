@@ -9,7 +9,7 @@ const ATAPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/animals/all/${id}`)
+    fetch(`https://sgpec-server-side-app.onrender.com/animals/all/${id}`)
       .then((response) => response.json())
       .then((data) => setAnimalData(data))
       .catch((error) => {
@@ -28,7 +28,7 @@ const ATAPage = () => {
           <style>
             /* Estilos para a página impressa */
             body {
-              font-family: Arial, sans-serif;
+              font-family: Monaco, monospace;
               margin: 20px;
               padding: 0;
             }

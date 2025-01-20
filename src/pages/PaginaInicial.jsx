@@ -86,7 +86,7 @@ const PaginaInicial = () => {
   const paginationModel = { page: 0, pageSize: 10 };
 
   useEffect(() => {
-    fetch("http://localhost:3000/animals")
+    fetch("https://sgpec-server-side-app.onrender.com/animals")
       .then((response) => response.json())
       .then((data) => {
         const animais = data.map((animal) => ({

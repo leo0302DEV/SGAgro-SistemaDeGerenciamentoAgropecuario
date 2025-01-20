@@ -61,7 +61,7 @@ const ModificarIndividual = () => {
   } = useContext(ModificarIndividualFormContext);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/animals/${id}`)
+    fetch(`https://sgpec-server-side-app.onrender.com/animals/${id}`)
       .then((response) => response.json())
       .then((data) => {
         const animalData = data.animalRecord;
@@ -91,7 +91,7 @@ const ModificarIndividual = () => {
       return;
     }
 
-    fetch(`http://localhost:3000/animals/${id}`, {
+    fetch(`https://sgpec-server-side-app.onrender.com/animals/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const ModificarIndividual = () => {
 
   function deletarRegistro() {
     if (confirm("Você deseja mesmo deletar esse registro?")) {
-      fetch(`http://localhost:3000/animals/${id}`, {
+      fetch(`https://sgpec-server-side-app.onrender.com/animals/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
