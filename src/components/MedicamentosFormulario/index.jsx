@@ -33,7 +33,7 @@ const MedicamentosFormulario = ({ animalId }) => {
   const [click, setClick] = useState(0);
 
   useEffect(() => {
-    fetch("https://sgpec-server-side-app.onrender.com/vaccines")
+    fetch(`${import.meta.env.VITE_API_URL}/vaccines`)
       .then((response) => response.json())
       .then((data) => {
         const medicamentosArr = data.map((vacina) => ({
@@ -47,15 +47,15 @@ const MedicamentosFormulario = ({ animalId }) => {
   }, []);
 
   function cadastrarNovaAplicacao() {
-    fetch("https://sgpec-server-side-app.onrender.com/animalVaccines", {
+    fetch(`${import.meta.env.VITE_API_URL}/animalVaccines`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         applicationDate: dataAplicacao,
-        AnimalId: Number(animalId),
-        VaccineId: Number(medicamentoSelecionado),
+        AnimalId: animalId,
+        VaccineId: medicamentoSelecionado,
       }),
     })
       .then((response) => response.json())

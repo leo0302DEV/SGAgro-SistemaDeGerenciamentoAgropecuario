@@ -9,7 +9,7 @@ const ATAPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`https://sgpec-server-side-app.onrender.com/animals/all/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/animals/all/${id}`)
       .then((response) => response.json())
       .then((data) => setAnimalData(data))
       .catch((error) => {

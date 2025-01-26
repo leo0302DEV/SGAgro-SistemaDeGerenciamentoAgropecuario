@@ -86,10 +86,10 @@ const PaginaInicial = () => {
   const paginationModel = { page: 0, pageSize: 10 };
 
   useEffect(() => {
-    fetch("https://sgpec-server-side-app.onrender.com/animals")
+    fetch(`${import.meta.env.VITE_API_URL}/animals`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.status && data.status === 404) {
+        if ((data.status && data.status === 404) || data.status === 500) {
           alert(data.message);
           setLogging(false);
           return;

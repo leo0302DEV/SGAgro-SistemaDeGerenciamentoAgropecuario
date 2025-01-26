@@ -41,7 +41,7 @@ const NovoRegistroForm = () => {
   const [novoMedicamentoAplic, setNovoMedicamentoAplic] = useState("");
 
   function criarNovoMedicamento() {
-    fetch("https://sgpec-server-side-app.onrender.com/vaccines", {
+    fetch(`${import.meta.env.VITE_API_URL}/vaccines`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

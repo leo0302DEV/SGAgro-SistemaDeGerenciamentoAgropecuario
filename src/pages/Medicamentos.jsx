@@ -62,7 +62,7 @@ const Medicamentos = () => {
   const paginationModel = { page: 0, pageSize: 10 };
 
   useEffect(() => {
-    fetch(`https://sgpec-server-side-app.onrender.com/animalVaccines/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/animalVaccines/${id}`)
       .then((response) => response.json())
       .then((data) => {
         const Medicamentos = data.map((medicamento) => ({
@@ -84,15 +84,12 @@ const Medicamentos = () => {
 
   function handleDelete(params) {
     if (confirm("Você deseja mesmo excluir esse registro?")) {
-      fetch(
-        `https://sgpec-server-side-app.onrender.com/animalVaccines/${params.row.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      fetch(`${import.meta.env.VITE_API_URL}/animalVaccines/${params.row.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
         .then((response) => response.json())
         .then((data) => {
           alert(data.message);

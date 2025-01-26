@@ -47,7 +47,7 @@ const Cadastro = () => {
       return;
     }
 
-    fetch("https://sgpec-server-side-app.onrender.com/animals", {
+    fetch(`${import.meta.env.VITE_API_URL}/animals`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

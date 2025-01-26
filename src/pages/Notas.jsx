@@ -79,7 +79,7 @@ const Notas = () => {
   const [novaNota, setNovaNota] = useState("");
 
   useEffect(() => {
-    fetch(`https://sgpec-server-side-app.onrender.com/notes/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/notes/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setNotes(data);
@@ -90,7 +90,7 @@ const Notas = () => {
 
   function deletarNota(notaId) {
     if (confirm("Você deseja mesmo deletar essa nota?")) {
-      fetch(`https://sgpec-server-side-app.onrender.com/notes/${notaId}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/notes/${notaId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -108,13 +108,13 @@ const Notas = () => {
   }
 
   function criarNovaNota() {
-    fetch("https://sgpec-server-side-app.onrender.com/notes", {
+    fetch(`${import.meta.env.VITE_API_URL}/notes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        animalId: Number(id),
+        animalId: id,
         creationDate: novaNotaData,
         anotations: novaNota,
       }),
@@ -164,7 +164,7 @@ const Notas = () => {
                   marginTop: "1rem",
                 }}
                 onClick={(event) =>
-                  deletarNota(Number(event.target.parentNode.dataset.id))
+                  deletarNota(event.target.parentNode.dataset.id)
                 }
               >
                 <MdDelete color="red" />
